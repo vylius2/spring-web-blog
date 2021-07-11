@@ -24,7 +24,7 @@ CREATE TABLE blog_post(
                           id BIGSERIAL PRIMARY KEY NOT NULL,
                           title VARCHAR(20) NOT NULL,
                           text TEXT NOT NULL,
-                          created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+                          created_at TIMESTAMP NOT NULL DEFAULT NOW(),
                           profile_id int not null,
                           CONSTRAINT fk_blog_post_profile
                               FOREIGN KEY(profile_id)
