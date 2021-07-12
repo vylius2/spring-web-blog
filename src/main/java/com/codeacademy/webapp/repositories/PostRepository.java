@@ -1,14 +1,15 @@
 package com.codeacademy.webapp.repositories;
 
-import com.codeacademy.webapp.entities.Profile;
+import com.codeacademy.webapp.entities.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface ProfileRepository extends JpaRepository<Profile, Long> {
+public interface PostRepository extends JpaRepository<Post, Long> {
 
-    List<Profile> findAll ();
+    List<Post> findAll ();
 
+    Post findPostById();
 }
