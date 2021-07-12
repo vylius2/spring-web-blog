@@ -28,8 +28,6 @@ public class Comment {
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
-
-
     public Comment(){
 
     }
