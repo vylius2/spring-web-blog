@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -32,6 +33,10 @@ public class Post {
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name="profile_id")
     private Profile profile;
+
+    @OneToMany(fetch=FetchType.LAZY,
+            cascade= CascadeType.ALL)
+    private List<Comment> comments;
 
     public Post(){
 

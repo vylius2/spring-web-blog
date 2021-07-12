@@ -20,13 +20,13 @@ CREATE TABLE profile(
                                 REFERENCES role(id)
 );
 
-CREATE TABLE blog_post(
+CREATE TABLE post(
                           id BIGSERIAL PRIMARY KEY NOT NULL,
                           title VARCHAR(20) NOT NULL,
                           text TEXT NOT NULL,
                           created_at TIMESTAMP NOT NULL DEFAULT NOW(),
                           profile_id int not null,
-                          CONSTRAINT fk_blog_post_profile
+                          CONSTRAINT fk_post_profile
                               FOREIGN KEY(profile_id)
                                   REFERENCES profile(id)
 );
@@ -34,13 +34,21 @@ CREATE TABLE blog_post(
 CREATE TABLE comment(
                         id BIGSERIAL PRIMARY KEY NOT NULL,
                         text TEXT NOT NULL,
-                        blog_post int not null,
+                        post_id int not null,
                         profile_id int not null,
                         CONSTRAINT fk_comment_profile
                             FOREIGN KEY(profile_id)
                                 REFERENCES profile(id),
-                        CONSTRAINT fk_comment_blog_post
-                            FOREIGN KEY(blog_post)
-                                REFERENCES blog_post(id)
+                        CONSTRAINT fk_comment_post
+                            FOREIGN KEY(post_id)
+                                REFERENCES post(id)
 );
 
+CREATE TABLE profile_role (
+                              profile_id BIGINT NOT NULL,
+                              role_title VARCHAR(30) NOT NULL,
+                              PRIMARY KEY (profile_id, role_title),
+                              CONSTRAINT fk_profile
+                                  FOREIGN KEY (profile_id)
+                                      REFERENCES profile(id)
+);

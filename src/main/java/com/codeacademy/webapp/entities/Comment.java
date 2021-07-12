@@ -1,2 +1,36 @@
-package com.codeacademy.webapp.entities;public class Comment {
+package com.codeacademy.webapp.entities;
+
+
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Data
+@Entity
+@Table(name="comment")
+public class Comment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private Long id;
+
+    @Column(name = "text")
+    private String text;
+
+    @ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    @ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
+
+
+
+    public Comment(){
+
+    }
 }
