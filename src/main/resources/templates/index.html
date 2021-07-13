@@ -109,6 +109,27 @@
                 </div>
 
             </div>
+
+            <ul class="pagination justify-content-center mt-3" th:if="${postsPage.totalPages > 1}">
+                <li class="page-item"
+                    th:classappend="${postsPage.number == 0} ? disabled">
+                    <a class="page-link"
+                       th:href="@{/post/list(page=${postsPage.number - 1})}">&lt;</a>
+                </li>
+                <li class="page-item"
+                    th:each="i : ${#numbers.sequence(0, postsPage.totalPages - 1)}"
+                    th:classappend="${i == postsPage.number} ? active">
+                    <a class="page-link"
+                       th:href="@{/post/list(page=${i})}"
+                       th:text="${i + 1}"></a>
+                </li>
+                <li class="page-item"
+                    th:classappend="${postsPage.number == postsPage.totalPages - 1} ? disabled">
+                    <a class="page-link"
+                       th:href="@{/post/list(page=${postsPage.number + 1})}">></a>
+                </li>
+            </ul>
+
         </div>
     </div>
 
