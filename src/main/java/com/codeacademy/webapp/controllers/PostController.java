@@ -20,12 +20,10 @@ public class PostController {
     PostService postService;
 
     @GetMapping("/list")
-    public String listPosts(@PageableDefault(size = 3) Pageable pageable,
+    public String listPosts(@PageableDefault(size = 9) Pageable pageable,
                             Model model,
                             HttpServletRequest request){
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
         model.addAttribute("postsPage", postService.getAllPostsPaginated(pageable));
         return "index";
-
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    List<Post> findAll ();
+//    List<Post> findAll (); TODO KODEL NEGALIMA OVERLOADINTI?
 
     Page<Post> findAll(Pageable pageable);
 

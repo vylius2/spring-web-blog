@@ -16,7 +16,6 @@ public class PostService {
     PostRepository postRepository;
 
     public Page<Post> getAllPostsPaginated(Pageable pageable){
-
         return postRepository.findAll(pageable);
     }
 }
