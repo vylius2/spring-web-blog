@@ -39,10 +39,8 @@ public class PostController {
 
     @PostMapping("/save")
     public String savePost(@ModelAttribute("post") Post post){
-        System.out.println("\n\n\n\n\n\n" + post + profileService.findById(1L) +  "\n\n\n\n\n\n\n\n");
-        post.setProfile(profileService.findById(1L));//TODO ISTRINT
-        System.out.println(post);
+        post.setProfile(profileService.findById(1L));//TODO ISTRINTI IMPLEMENTAVUS CONTROLLERADVICE
         postService.savePost(post);
-        return "redirect:/index";
+        return "redirect:/post/list";
     }
 }

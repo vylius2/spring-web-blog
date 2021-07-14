@@ -41,7 +41,7 @@ public class Profile {
             joinColumns = @JoinColumn(name = "profile_id"))
     @Enumerated(EnumType.STRING)
     @Column(name = "role_title")
-    private Set<Role> skillSet;
+    private Set<Role> roleSet;
 
     public Profile(){
 
