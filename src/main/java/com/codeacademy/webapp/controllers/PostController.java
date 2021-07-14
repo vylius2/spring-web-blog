@@ -39,15 +39,23 @@ public class PostController {
 
     @PostMapping("/save")
     public String savePost(@ModelAttribute("post") Post post){
-        post.setProfile(profileService.findById(1L));//TODO ISTRINTI IMPLEMENTAVUS CONTROLLERADVICE
+
+        //TODO ISTRINTI IMPLEMENTAVUS CONTROLLERADVICE
+        post.setProfile(profileService.findById(1L));
+
         postService.savePost(post);
         return "redirect:/post/list";
     }
 
     @GetMapping("/delete")
     public String deletePost(@RequestParam("postId") Long id){
-        System.out.println("\n\n\n\n\n\n\n");
         postService.deleteById(id);
         return "redirect:/post/list";
+    }
+
+    @GetMapping("/edit")
+    public String updatePost(@RequestParam("postId") Long id, Model model){
+        model.addAttribute("post", postService.findPostById(id));
+        return "create-post";
     }
 }

@@ -19,5 +19,4 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     void deleteById(Long id);
 
-
 }

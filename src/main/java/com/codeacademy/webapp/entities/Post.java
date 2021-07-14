@@ -27,7 +27,7 @@ public class Post {
 
     @CreationTimestamp
     @Column(name = "created_at")
-    private LocalDateTime date;
+    private LocalDateTime createdAt;
 
     @ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})

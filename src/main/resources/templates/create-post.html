@@ -50,6 +50,8 @@
 
     <main class="form-signin">
         <form method="POST" action="#" th:action="@{/post/save}" th:object="${post}">
+            <input type="hidden" th:field="*{id}">
+            <input th:type="hidden" th:field="*{createdAt}">
             <h1 class="h3 mb-3 fw-normal">Post create form!</h1>
             <div class="form-group">
                 <label>What your post will be about?</label>
