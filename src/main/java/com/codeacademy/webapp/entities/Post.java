@@ -34,7 +34,9 @@ public class Post {
     @JoinColumn(name="profile_id")
     private Profile profile;
 
-    @OneToMany(fetch=FetchType.LAZY,
+
+    @OneToMany(mappedBy = "post",
+            fetch=FetchType.LAZY,
             cascade= CascadeType.ALL)
     private List<Comment> comments;
 

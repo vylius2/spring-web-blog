@@ -43,4 +43,11 @@ public class PostController {
         postService.savePost(post);
         return "redirect:/post/list";
     }
+
+    @GetMapping("/delete")
+    public String deletePost(@RequestParam("postId") Long id){
+        System.out.println("\n\n\n\n\n\n\n");
+        postService.deleteById(id);
+        return "redirect:/post/list";
+    }
 }

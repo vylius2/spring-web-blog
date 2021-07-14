@@ -101,6 +101,8 @@
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    <a type="button" class="btn btn-sm btn-outline-secondary"
+                                            th:href="@{/post/delete(postId=${post.id})}">Delete</a>
                                 </div>
                                 <small class="text-muted">9 mins</small>
                             </div>
