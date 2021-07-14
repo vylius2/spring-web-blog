@@ -38,8 +38,8 @@ public class PostController {
     }
 
     @PostMapping("/save")
-    public String savePost(Post post){
-        System.out.println("\n\n\n\n\n\n" + post + "\n\n\n\n\n\n\n\n");
+    public String savePost(@ModelAttribute("post") Post post){
+        System.out.println("\n\n\n\n\n\n" + post + profileService.findById(1L) +  "\n\n\n\n\n\n\n\n");
         post.setProfile(profileService.findById(1L));//TODO ISTRINT
         System.out.println(post);
         postService.savePost(post);
