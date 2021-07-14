@@ -18,4 +18,8 @@ public class PostService {
     public Page<Post> getAllPostsPaginated(Pageable pageable){
         return postRepository.findAll(pageable);
     }
+
+    public Post savePost(Post post){
+        return postRepository.save(post);
+    }
 }

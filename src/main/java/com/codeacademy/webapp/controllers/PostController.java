@@ -1,16 +1,15 @@
 package com.codeacademy.webapp.controllers;
 
 import com.codeacademy.webapp.entities.Post;
+import com.codeacademy.webapp.repositories.ProfileRepository;
 import com.codeacademy.webapp.services.PostService;
+import com.codeacademy.webapp.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +19,9 @@ public class PostController {
 
     @Autowired
     PostService postService;
+
+    @Autowired
+    ProfileService profileService;
 
     @GetMapping("/list")
     public String listPosts(@PageableDefault(size = 9) Pageable pageable,
@@ -33,5 +35,14 @@ public class PostController {
     public String createPost(Model model){
         model.addAttribute("post", new Post());
         return "create-post";
+    }
+
+    @PostMapping("/save")
+    public String savePost(Post post){
+        System.out.println("\n\n\n\n\n\n" + post + "\n\n\n\n\n\n\n\n");
+        post.setProfile(profileService.findById(1L));//TODO ISTRINT
+        System.out.println(post);
+        postService.savePost(post);
+        return "redirect:/index";
     }
 }

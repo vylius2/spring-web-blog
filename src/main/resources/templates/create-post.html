@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -35,12 +35,7 @@
         .form-control {
             margin-bottom: 5px;
         }
-        
-        input[type="text"] {
-            width: 500px;
-            height: 300px;
-        }
-        
+
         span {
             color: red;
         }
@@ -54,20 +49,21 @@
 <body class="text-center">
 
     <main class="form-signin">
-        <form>
+        <form method="POST" th:object="${post}">
             <h1 class="h3 mb-3 fw-normal">Post create form!</h1>
             <div class="form-group">
-                <label class="" for="exampleFormControlInput1">What your post will be about?</label>
-                <input type="email" class="form-control" placeholder="Title">
+                <label>What your post will be about?</label>
+                <input type="text" class="form-control" placeholder="Title" th:field="*{title}">
             </div>
             <div class="form-group">
                 <label class="float-left" for="exampleFormControlTextarea1">Your text goes below</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                          placeholder="Content..." th:field="*{text}"></textarea>
             </div>
 
             <div>
-                <button class="w-25 btn btn-lg btn-secondary mt-4" type="submit">Back</button>
-                <button class="w-25 btn btn-lg btn-success mt-4" type="submit">Save</button>
+                <a class="w-25 btn btn-lg btn-secondary mt-4" th:href="@{/post/list}">Back</a>
+                <button class="w-25 btn btn-lg btn-success mt-4">Save</button>
             </div>
             <p class="mt-5 mb-3 text-muted">&copy; Sideshow Bob</p>
         </form>
