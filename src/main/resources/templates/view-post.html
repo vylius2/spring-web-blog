@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -14,7 +14,7 @@
 
 
     <!-- Bootstrap core CSS -->
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -61,7 +61,7 @@
 
 
     <!-- Custom styles for this template -->
-    <link href="starter-template.css" rel="stylesheet">
+    <link href="/css/view-post.css" rel="stylesheet">
 </head>
 
 <body>
@@ -90,7 +90,7 @@
         </div>
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a href="#" class="navbar-brand d-flex align-items-center">
+                <a href="#" th:href="@{/post/list}" class="navbar-brand d-flex align-items-center">
                     <strong>Articles</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,8 +104,8 @@
 
 
         <main>
-            <h1>Title Placeholder</h1>
-            <p class="fs-5 col-md-8">Blog post text Blog post text Blog post text Blog post text Blog post text...</p>
+            <h1 th:text="${post.title}">Title Placeholder</h1>
+            <p class="fs-5 col-md-8" th:text="${post.text}">Blog post text Blog post text Blog post text Blog post text Blog post text...</p>
 
         </main>
         <hr>
@@ -116,7 +116,7 @@
 
         <div class="card my-3" style="width: 500px;">
             <div class="card-body">
-                <h5 class="card-title comment-user-time-display">Vilius <span style="font-size: 12px;">9minutes ago</span></h5>
+                <h5 class="card-title comment-user-time-display">Vilius <span style="font-size: 12px;">9 minutes ago</span></h5>
                 <hr>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk oSome quick example text to build on the card title and make up the bulk oSome quick example text to build on the card title and make up the bulk of the card's content.</p>
 
