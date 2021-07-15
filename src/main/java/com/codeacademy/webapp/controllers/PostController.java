@@ -58,4 +58,10 @@ public class PostController {
         model.addAttribute("post", postService.findPostById(id));
         return "create-post";
     }
+    @GetMapping("/view")
+    public String viewPost(@RequestParam("postId") Long id,
+                           Model model){
+        model.addAttribute("post", postService.findPostById(id));
+        return "view-post";
+    }
 }
