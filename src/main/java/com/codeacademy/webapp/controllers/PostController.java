@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/post")
@@ -62,6 +63,8 @@ public class PostController {
     public String viewPost(@RequestParam("postId") Long id,
                            Model model){
         model.addAttribute("post", postService.findPostById(id));
+        LocalDateTime date = LocalDateTime.now();
+        System.out.println();
         return "view-post";
     }
 }
