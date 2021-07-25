@@ -13,4 +13,6 @@ public interface ProfileRepository extends JpaRepository<Profile, Long> {
     List<Profile> findAll ();
 
     Optional<Profile> getProfileById(Long id);
+
+
 }

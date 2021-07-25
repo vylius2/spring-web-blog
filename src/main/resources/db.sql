@@ -1,5 +1,9 @@
 DROP TABLE IF EXISTS role;
 DROP TABLE IF EXISTS profile;
+DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS profile_role;
+
 
 CREATE TABLE role
 (
@@ -45,10 +49,7 @@ CREATE TABLE comment(
 );
 
 CREATE TABLE profile_role (
-                              profile_id BIGINT NOT NULL,
-                              role_title VARCHAR(30) NOT NULL,
-                              PRIMARY KEY (profile_id, role_title),
-                              CONSTRAINT fk_profile
-                                  FOREIGN KEY (profile_id)
-                                      REFERENCES profile(id)
+                      profile_id BIGINT REFERENCES profile (id) NOT NULL,
+                      role_id BIGINT REFERENCES role(id) NOT NULL,
+                                CONSTRAINT profile_role_pkey PRIMARY KEY (profile_id, role_id)
 );

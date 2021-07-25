@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -14,7 +14,7 @@
 
 
     <!-- Bootstrap core CSS -->
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -42,43 +42,46 @@
 
 
     <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
+    <link href="/css/signin.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
 
     <main class="form-signin">
-        <form>
+        <form action="#" th:action="@{/user/save}" method="POST" autocomplete="off" th:object="${profile}">
+            <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{createdAt}">
             <h1 class="h3 mb-3 fw-normal">Create account</h1>
-
             <div class="form-floating">
-                <input type="text" class="form-control" placeholder="Username">
+                <input type="text" class="form-control" placeholder="Username" name="username" autocomplete="false"
+                       th:field="*{username}">
                 <label for="floatingInput">Username <span>*</span></label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control" placeholder="Username">
+                <input type="text" class="form-control" placeholder="Email" name="email"
+                       th:field="*{email}">
                 <label for="floatingInput">Email <span>*</span></label>
             </div>
+
             <div class="form-floating">
-                <input type="text" class="form-control" placeholder="Username">
+                <input type="text" class="form-control" placeholder="First name" name="firstName"
+                       th:field="*{firstName}">
                 <label for="floatingInput">First name <span>*</span></label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control" placeholder="Username">
+                <input type="text" class="form-control" placeholder="Last name" name="lastName"
+                       th:field="*{lastName}">
                 <label for="floatingInput">Last name</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" placeholder="Password" name="password"
+                       th:field="*{password}">
                 <label for="floatingPassword">Password <span>*</span></label>
             </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" placeholder="Password">
-                <label for="floatingPassword">Repeat Password <span>*</span></label>
-            </div>
 
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Create</button>
+            <button class="w-100 btn btn-lg btn-primary">Create</button>
             <div class="my-3">
-                <p>Already have account? <a href=""> Sign in!</a></p>
+                <p>Already have account? <a th:href="@{/user/login}"> Sign in!</a></p>
             </div>
             <p class="mt-5 mb-3 text-muted">&copy; Sideshow Bob</p>
         </form>

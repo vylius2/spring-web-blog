@@ -18,4 +18,8 @@ public class ProfileService {
 
         return profileRepository.getProfileById(id).orElseThrow(() -> new ProfileNotFoundException(id));
     }
+
+    public void save(Profile profile){
+        profileRepository.save(profile);
+    }
 }

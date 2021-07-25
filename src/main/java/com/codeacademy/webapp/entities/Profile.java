@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -36,12 +37,13 @@ public class Profile {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @ElementCollection(targetClass = Role.class)
-    @CollectionTable(name = "profile_role",
-            joinColumns = @JoinColumn(name = "profile_id"))
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role_title")
-    private Set<Role> roleSet;
+    @ManyToMany(fetch = FetchType.LAZY,
+                    cascade = {CascadeType.DETACH, CascadeType.MERGE,
+                            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "profile_role",
+                    joinColumns = @JoinColumn(name = "profile_id"),
+                    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roleSet = new HashSet<>();
 
     public Profile(){
 
