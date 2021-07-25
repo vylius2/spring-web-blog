@@ -1,21 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
+
+<!--    <meta th:http-equiv="Content-Type" content="text/html; charset=utf-8">-->
     <title>Signin Template · Bootstrap v5.0</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
 
 
+    <link type="text/css" href="/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-
+    <link type="text/css" href="/css/signin.css" rel="stylesheet">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -35,23 +37,24 @@
         }
     </style>
 
-
-    <!-- Custom styles for this template -->
-    <link href="/css/signin.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
 
     <main class="form-signin">
-        <form>
+        <form th:action="@{/user/login}" method="POST">
             <h1 class="h3 mb-3 fw-normal">Sign in</h1>
 
+            <div th:if="${param.error}" class="alert alert-danger">
+                Invalid username or password.
+            </div>
+
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="Username">
+                <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
                 <label for="floatingInput">Username</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                 <label for="floatingPassword">Password</label>
             </div>
 

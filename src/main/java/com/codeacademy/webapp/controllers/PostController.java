@@ -39,6 +39,7 @@ public class PostController {
     }
 
     @PostMapping("/save")
+    //                     @MODELATTRIBUTE NERA REIKALINGAS!!!!
     public String savePost(@ModelAttribute("post") Post post){
 
         //TODO ISTRINTI IMPLEMENTAVUS CONTROLLERADVICE
