@@ -43,10 +43,16 @@ public class Profile {
     @JoinTable(name = "profile_role",
                     joinColumns = @JoinColumn(name = "profile_id"),
                     inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roleSet = new HashSet<>();
+    private Set<Role> roles;
 
     public Profile(){
 
+    }
+    public void addRole(Role role){
+        if (roles==null){
+            roles = new HashSet<>();
+        }
+        roles.add(role);
     }
 }
 

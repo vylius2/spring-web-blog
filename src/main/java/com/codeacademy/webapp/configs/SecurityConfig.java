@@ -12,19 +12,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    @Override
-//    protected void configure (HttpSecurity http) throws Exception{
-//        http
-//                .authorizeRequests()
-//                    .anyRequest().authenticated()
-//                    .and()
-//                .formLogin()
-//                    .permitAll()
-//                    .loginPage("")
-//                    .and()
-//                .logout();
-//    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -33,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/save").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/user/login").permitAll()
+                .antMatchers("/post/list").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
