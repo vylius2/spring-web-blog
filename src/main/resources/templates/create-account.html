@@ -53,8 +53,12 @@
             <input type="hidden" th:field="*{createdAt}">
             <h1 class="h3 mb-3 fw-normal">Create account</h1>
             <div class="form-floating">
-                <input type="text" class="form-control" placeholder="Username" name="username"
-                       th:field="*{username}" autocomplete="off">
+                <input class="form-control" readonly type="text" onfocus="if (this.hasAttribute('readonly')) {
+                    this.removeAttribute('readonly');}"
+                       placeholder="Username" name="username"/>
+
+<!--                <input type="text" class="form-control" placeholder="Username" name="username"-->
+<!--                       th:field="*{username}" autocomplete="off">-->
                 <label for="floatingInput">Username <span>*</span></label>
             </div>
             <div class="form-floating">

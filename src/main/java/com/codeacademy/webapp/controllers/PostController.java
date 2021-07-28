@@ -33,7 +33,7 @@ public class PostController {
         return "index";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/create")
     public String createPost(Model model){
         model.addAttribute("post", new Post());
