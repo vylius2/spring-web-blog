@@ -7,6 +7,7 @@ import com.codeacademy.webapp.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @Controller
 @RequestMapping("/post")
 public class PostController {
-
+    //TODO PERDARYT I CONSTRUCTOR BASED
     @Autowired
     PostService postService;
 
@@ -32,6 +33,7 @@ public class PostController {
         return "index";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/create")
     public String createPost(Model model){
         model.addAttribute("post", new Post());
@@ -41,15 +43,12 @@ public class PostController {
     @PostMapping("/save")
     //                     @MODELATTRIBUTE NERA REIKALINGAS!!!!
     public String savePost(@ModelAttribute("post") Post post){
-
-        //TODO ISTRINTI IMPLEMENTAVUS CONTROLLERADVICE
-        post.setProfile(profileService.findById(1L));
-
-        postService.savePost(post);
+        postService.savePost(postService.createPost(post));
         return "redirect:/post/list";
     }
 
     @GetMapping("/delete")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deletePost(@RequestParam("postId") Long id){
         postService.deleteById(id);
         return "redirect:/post/list";

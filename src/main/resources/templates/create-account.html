@@ -48,13 +48,13 @@
 <body class="text-center">
 
     <main class="form-signin">
-        <form action="#" th:action="@{/user/save}" method="POST" autocomplete="off" th:object="${profile}">
+        <form action="#" th:action="@{/user/save}" method="POST" th:object="${profile}" autocomplete="chrome-off">
             <input type="hidden" th:field="*{id}">
             <input type="hidden" th:field="*{createdAt}">
             <h1 class="h3 mb-3 fw-normal">Create account</h1>
             <div class="form-floating">
-                <input type="text" class="form-control" placeholder="Username" name="username" autocomplete="false"
-                       th:field="*{username}">
+                <input type="text" class="form-control" placeholder="Username" name="username"
+                       th:field="*{username}" autocomplete="off">
                 <label for="floatingInput">Username <span>*</span></label>
             </div>
             <div class="form-floating">
@@ -75,11 +75,11 @@
             </div>
             <div class="form-floating">
                 <input type="password" class="form-control" placeholder="Password" name="password"
-                       th:field="*{password}">
+                       th:field="*{password}" autocomplete="chrome-off">
                 <label for="floatingPassword">Password <span>*</span></label>
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary">Create</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Create</button>
             <div class="my-3">
                 <p>Already have account? <a th:href="@{/user/login}"> Sign in!</a></p>
             </div>

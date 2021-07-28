@@ -1,7 +1,6 @@
 package com.codeacademy.webapp.controllers;
 
 import com.codeacademy.webapp.entities.Profile;
-import com.codeacademy.webapp.entities.Role;
 import com.codeacademy.webapp.services.ProfileService;
 import com.codeacademy.webapp.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 
-
+    //TODO PERDARYT I CONSTRUCTOR BASED
     @Autowired
     private ProfileService profileService;
     @Autowired
@@ -27,6 +26,10 @@ public class UserController {
 
         return "sign-in";
     }
+    @GetMapping("/logout")
+    public String logout(){
+        return "redirect:/user/login";
+    }
 
     @GetMapping("/register")
     public String register(Model model){
@@ -36,10 +39,8 @@ public class UserController {
 
     @PostMapping("/save")
     public String createUser(Profile profile){
-        profile.addRole(roleService.findById(1L).orElse(null));
-        System.out.println(profile);
-        System.out.println("VEIKIA SAVE!!!!");
-        profileService.save(profile);
+
+        profileService.save(profileService.createProfile(profile));
         return "redirect:/user/login";
     }
 }
