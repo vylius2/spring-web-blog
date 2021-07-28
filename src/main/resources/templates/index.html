@@ -74,7 +74,7 @@
             <div>
                 <span style="color: white" th:text="${#authentication.getName()}"></span>
 
-                <a sec:authorize="isAuthenticated()" th:href="#{/logout}">Logout</a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
                 <select id="locales" class="language-drop-down">
                     <option th:text="${#locale.toLanguageTag().toUpperCase()}"></option>
                     <option value="EN" th:unless="${#locale.toString().equals('en')}">EN</option>
