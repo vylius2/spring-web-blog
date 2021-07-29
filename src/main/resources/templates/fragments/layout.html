@@ -12,6 +12,14 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .language-drop-down{
+            color: white;
+            background-color: rgb(33,37,41);
+            border: none;
+            font-weight: normal;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,14 +27,19 @@
 <header th:fragment="header">
     <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
-            <a href="#" class="navbar-brand d-flex align-items-center">
+            <a th:href="@{/}" class="navbar-brand d-flex align-items-center">
                 <strong>Articles</strong>
             </a>
+            <div style="color: white" sec:authorize="isAuthenticated()">
+                <span>Hello </span>
+                <span th:text="${#authentication.getName()}"></span>
+                <span>!</span>
+            </div>
             <div>
-                <span style="color: white" sec:authorize="isAuthenticated()" th:text="${#authentication.getName()}"></span>
 
-                <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
-                <a sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
+
+                <a sec:authorize="isAuthenticated()" class="login" th:href="@{/logout}">Logout</a>
+                <a sec:authorize="isAnonymous()" class="login" th:href="@{/user/login}">Login</a>
                 <select id="locales" class="language-drop-down">
                     <option th:text="${#locale.toLanguageTag().toUpperCase()}"></option>
                     <option value="EN" th:unless="${#locale.toString().equals('en')}">EN</option>

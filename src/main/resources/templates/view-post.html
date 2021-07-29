@@ -17,12 +17,11 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
+        .language-drop-down{
+            color: white;
+            background-color: rgb(33,37,41);
+            border: none;
+            font-weight: normal;
         }
         
         body {
@@ -87,7 +86,6 @@
             </div>
         </div>
 
-<!-- TODO--------------------------- ISTRINT SITA komentara!!!---------------------- -->
         <form action="#" method="POST" th:action="@{/comment/create(postId=${post.id})}" th:object="${comment}">
             <div class="comment-input-group">
                 <textarea name="comment" id="" cols="90" rows="3" placeholder="Your comment..."
