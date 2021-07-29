@@ -16,29 +16,25 @@
 
 <body>
 
-<header>
-    <div class="collapse bg-dark" id="navbarHeader">
-
+<header th:fragment="header">
+    <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                    <h4 class="text-white">About</h4>
-                    <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact
-                        information.
-                    </p>
-                </div>
-                <div class="col-sm-4 offset-md-1 py-4">
-                    <h4 class="text-white">Contact</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                        <li><a href="#" class="text-white">Like on Facebook</a></li>
-                        <li><a href="#" class="text-white">Email me</a></li>
-                    </ul>
-                </div>
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <strong>Articles</strong>
+            </a>
+            <div>
+                <span style="color: white" sec:authorize="isAuthenticated()" th:text="${#authentication.getName()}"></span>
+
+                <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+                <a sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
+                <select id="locales" class="language-drop-down">
+                    <option th:text="${#locale.toLanguageTag().toUpperCase()}"></option>
+                    <option value="EN" th:unless="${#locale.toString().equals('en')}">EN</option>
+                    <option value="LT" th:unless="${#locale.toString().equals('lt')}">LT</option>
+                </select>
             </div>
         </div>
     </div>
-
 </header>
 
 <main>

@@ -1,11 +1,16 @@
 package com.codeacademy.webapp.entities;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
 @Table(name="comment")
 public class Comment {

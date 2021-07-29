@@ -64,27 +64,7 @@
 
 <body>
 
-<header>
-
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container">
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>Articles</strong>
-            </a>
-            <div>
-                <span style="color: white" sec:authorize="isAuthenticated()" th:text="${#authentication.getName()}"></span>
-
-                <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
-                <a sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
-                <select id="locales" class="language-drop-down">
-                    <option th:text="${#locale.toLanguageTag().toUpperCase()}"></option>
-                    <option value="EN" th:unless="${#locale.toString().equals('en')}">EN</option>
-                    <option value="LT" th:unless="${#locale.toString().equals('lt')}">LT</option>
-                </select>
-            </div>
-        </div>
-    </div>
-</header>
+<header th:replace="fragments/layout :: header"></header>
 
 <main>
 
@@ -92,6 +72,7 @@
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Article example</h1>
+                <h1 th:text="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"></h1>
                 <p class="lead text-muted">Create your article, host discussion on it, connect with people! Give brief title to your article and some details on it would be awesome as well!</p>
                 <p>
                     <a th:href="@{/post/create}" class="btn btn-primary my-2" th:text="#{post.create.blog-post}">Add Article</a>
@@ -126,7 +107,6 @@
                                             th:href="@{/post/delete(postId=${post.id})}"
                                             onclick="if (!(confirm('Are you sure you want to delete this post?')))
                                                 return false;" th:text="#{post.delete}"
-                                            sec:authorize="hasRole('ADMIN')"
                                             th:if="${#authentication.getName()} == ${post.getProfile().getUsername()}
                                                    OR ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Delete</a>
                                 </div>
@@ -165,7 +145,7 @@
 
 <footer th:replace="fragments/layout :: footer"></footer>
 
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<!--<script src="/js/bootstrap.bundle.min.js"></script>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
 </script>
 <script type="text/javascript">

@@ -23,9 +23,9 @@ public class UserController {
 
     @GetMapping("/login")
     public String login(){
-
         return "sign-in";
     }
+
     @GetMapping("/logout")
     public String logout(){
         return "redirect:/user/login";

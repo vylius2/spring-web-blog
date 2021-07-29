@@ -1,7 +1,9 @@
 package com.codeacademy.webapp.controllers;
 
+import com.codeacademy.webapp.entities.Comment;
 import com.codeacademy.webapp.entities.Post;
 import com.codeacademy.webapp.repositories.ProfileRepository;
+import com.codeacademy.webapp.services.CommentService;
 import com.codeacademy.webapp.services.PostService;
 import com.codeacademy.webapp.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
+
 
 @Controller
 @RequestMapping("/post")
@@ -24,6 +26,9 @@ public class PostController {
 
     @Autowired
     ProfileService profileService;
+
+    @Autowired
+    CommentService commentService;
 
     @GetMapping("/list")
     public String listPosts(@PageableDefault(size = 9) Pageable pageable,
@@ -63,8 +68,8 @@ public class PostController {
     public String viewPost(@RequestParam("postId") Long id,
                            Model model){
         model.addAttribute("post", postService.findPostById(id));
-        LocalDateTime date = LocalDateTime.now();
-        System.out.println();
+        model.addAttribute("comment", new Comment());
+        model.addAttribute("comments", commentService.findAllByPostId(id));
         return "view-post";
     }
  
