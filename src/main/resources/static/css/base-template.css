@@ -1,0 +1,23 @@
+.language-drop-down{
+    color: white;
+    background-color: rgb(33,37,41);
+    border: none;
+    font-weight: normal;
+}
+.delete:hover{
+    background-color: red;
+    color: white;
+}
+.login{
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    border: white solid 1px;
+    color: white;
+    margin-right: 10px;
+}
+.login:hover{
+    background-color: #5c636a;
+    padding: 6px;
+    color: white;
+}

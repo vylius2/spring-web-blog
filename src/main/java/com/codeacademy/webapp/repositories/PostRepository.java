@@ -1,6 +1,7 @@
 package com.codeacademy.webapp.repositories;
 
 import com.codeacademy.webapp.entities.Post;
+import com.codeacademy.webapp.entities.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,5 +15,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Post findPostById(Long id);
 
     void deleteById(Long id);
+
+    List<Post> findPostsByProfile(Profile profile);
 
 }

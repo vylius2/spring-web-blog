@@ -16,6 +16,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/base-template.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -48,29 +49,7 @@
         .min-height206{
             min-height: 206px;
         }
-        .login{
-            padding: 5px;
-            border-radius: 5px;
-            text-decoration: none;
-            border: white solid 1px;
-            color: white;
-            margin-right: 10px;
-        }
-        .login:hover{
-            background-color: #5c636a;
-            padding: 6px;
-            color: white;
-        }
-        .language-drop-down{
-            color: white;
-            background-color: rgb(33,37,41);
-            border: none;
-            font-weight: normal;
-        }
-        .delete:hover{
-            background-color: red;
-            color: white;
-        }
+
     </style>
 
 
@@ -85,12 +64,12 @@
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Article example</h1>
-                <h1 th:text="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"></h1>
+                <h1 class="fw-light">Share Your Article!</h1>
                 <p class="lead text-muted">Create your article, host discussion on it, connect with people! Give brief title to your article and some details on it would be awesome as well!</p>
                 <p>
                     <a th:href="@{/post/create}" class="btn btn-primary my-2" th:text="#{post.create.blog-post}">Add Article</a>
-                    <a href="#" class="btn btn-secondary my-2" th:text="#{post.review-my-articles}">Review my Articles</a>
+                    <a href="#" class="btn btn-secondary my-2" th:text="#{post.review-my-articles}"
+                        th:href="@{/post/my/uploads}">Review my Articles</a>
                 </p>
             </div>
         </div>
@@ -98,7 +77,8 @@
 
     <div class="album py-5 bg-light">
         <div class="container">
-
+            <h1 class="text-center" th:if="${postsPage.isEmpty()}">There is no posts :(
+                <br> <a th:href="@{/post/create}">Create</a> one now!</h1>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                 <div th:each="post: ${postsPage.content}" class="col">

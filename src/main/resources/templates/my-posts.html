@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <title>Album example · Bootstrap v5.0</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link type="text/css" href="/css/bootstrap.min.css" rel="stylesheet">
+  <link type="text/css" href="/css/base-template.css" rel="stylesheet">
+  <style>
+    html {
+      height: 100vh;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .content {
+      min-height: calc(100vh - 160px);
+    }
+
+    .stay-bottom {
+      height: 50px;
+    }
+  </style>
+
+
+</head>
+
+<body>
+
+<header th:replace="fragments/layout :: header">
+
+</header>
+
+<main class="content">
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="text-center" th:if="${posts.isEmpty()}">
+        <h1>You don't have any articles! </h1>
+        <a th:href="@{/post/create}">Create here!</a>
+      </div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <div th:each="post: ${posts}" class="col">
+          <div class="card shadow-sm min-height206">
+            <h4 class="card-body text-truncate" style="margin-bottom: 0;" th:text="${post.title}">Title placeholder...</h4>
+            <hr style="margin-top: 0;">
+            <div class="card-body">
+              <p class="card-text text-log"  th:text="${post.text}">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a type="button" class="btn btn-sm btn-outline-secondary btn-light"
+                     th:href="@{/post/view(postId=${post.id})}"
+                     th:text="#{post.view}">View</a>
+                  <a type="button" class="btn btn-sm btn-outline-secondary btn-light"
+                     th:href="@{/post/edit(postId=${post.id})}"
+                     th:text="#{post.edit}"
+                     th:if="${#authentication.getName()} == ${post.getProfile().getUsername()}"
+                  >Edit</a>
+                  <a type="button" class="btn btn-sm btn-outline-secondary delete"
+                     th:href="@{/post/delete(postId=${post.id})}"
+                     onclick="if (!(confirm('Are you sure you want to delete this post?')))
+                                                return false;" th:text="#{post.delete}"
+                     th:if="${#authentication.getName()} == ${post.getProfile().getUsername()}
+                                                   OR ${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Delete</a>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="text-muted py-5 stay-bottom">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">Back to top</a>
+    </p>
+    <p class="mb-1">This web blog was made by Vilius</p>
+    <p class="mb-0">Want to know me? <a href="https://spinata.lt">Visit my CV page</a>.</p>
+  </div>
+</footer>
+
+
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>

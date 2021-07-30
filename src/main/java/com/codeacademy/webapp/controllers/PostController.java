@@ -2,6 +2,7 @@ package com.codeacademy.webapp.controllers;
 
 import com.codeacademy.webapp.entities.Comment;
 import com.codeacademy.webapp.entities.Post;
+import com.codeacademy.webapp.entities.Profile;
 import com.codeacademy.webapp.repositories.ProfileRepository;
 import com.codeacademy.webapp.services.CommentService;
 import com.codeacademy.webapp.services.PostService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,9 @@ public class PostController {
     //TODO PERDARYT I CONSTRUCTOR BASED
     @Autowired
     PostService postService;
+
+    @Autowired
+    ProfileRepository profileRepository;
 
     @Autowired
     ProfileService profileService;
@@ -72,5 +77,11 @@ public class PostController {
         model.addAttribute("comments", commentService.findAllByPostId(id));
         return "view-post";
     }
- 
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/my/uploads")
+    public String viewMyPosts(Model model){
+        model.addAttribute("posts", postService.findPostByCurrentProfile());
+        return "my-posts";
+    }
 }

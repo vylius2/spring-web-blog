@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class PostService {
@@ -46,5 +48,14 @@ public class PostService {
             post.setProfile(profileRepository.getProfileById(((Profile)principal).getId()).orElse(null));
         }
         return post;
+    }
+    public List<Post> findPostByCurrentProfile(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Post> posts = null;
+        if (principal instanceof Profile) {
+            Profile profile = ((Profile)principal);
+            posts = postRepository.findPostsByProfile(profile);
+        }
+        return posts;
     }
 }
