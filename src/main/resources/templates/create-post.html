@@ -49,18 +49,25 @@
 <body class="text-center">
 
     <main class="form-signin">
-        <form method="POST" action="#" th:action="@{/post/save}" th:object="${post}">
+        <form method="POST" action="#" th:action="@{/post/save}" th:object="${postDTO}">
             <input type="hidden" th:field="*{id}">
             <input th:type="hidden" th:field="*{createdAt}">
             <h1 class="h3 mb-3 fw-normal">Post create form!</h1>
+<!--            <div th:if="${#fields.hasErrors()}" class="alert alert-danger" role="alert">-->
+<!--                <ul>-->
+<!--                    <li th:each="err: ${#fields.errors()}" th:text="${err}"></li>-->
+<!--                </ul>-->
+<!--            </div>-->
             <div class="form-group">
                 <label>What your post will be about?</label>
-                <input type="text" class="form-control" placeholder="Title" th:field="*{title}">
+                <input type="text" class="form-control" placeholder="Title" th:field="*{title}" th:errorClass="is-invalid">
+                <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="invalid-feedback"></div>
             </div>
             <div class="form-group">
                 <label class="float-left" for="exampleFormControlTextarea1">Your text goes below</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                          placeholder="Content..." th:field="*{text}"></textarea>
+                          placeholder="Content..." th:field="*{text}" th:errorClass="is-invalid"></textarea>
+                <div th:if="${#fields.hasErrors('text')}" th:errors="*{text}" class="invalid-feedback"></div>
             </div>
 
             <div>

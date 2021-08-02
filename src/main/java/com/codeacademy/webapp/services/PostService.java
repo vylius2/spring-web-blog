@@ -1,5 +1,6 @@
 package com.codeacademy.webapp.services;
 
+import com.codeacademy.webapp.dto.PostDTO;
 import com.codeacademy.webapp.entities.Post;
 import com.codeacademy.webapp.entities.Profile;
 import com.codeacademy.webapp.exceptions.ProfileNotFoundException;
@@ -42,7 +43,8 @@ public class PostService {
         return postRepository.findPostById(id);
     }
 
-    public Post createPost(Post post){
+    public Post createPost(PostDTO postDTO){
+        Post post = new Post(postDTO);
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof Profile) {
             post.setProfile(profileRepository.getProfileById(((Profile)principal).getId()).orElse(null));

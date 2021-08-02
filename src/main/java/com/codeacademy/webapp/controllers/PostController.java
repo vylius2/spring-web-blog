@@ -1,5 +1,6 @@
 package com.codeacademy.webapp.controllers;
 
+import com.codeacademy.webapp.dto.PostDTO;
 import com.codeacademy.webapp.entities.Comment;
 import com.codeacademy.webapp.entities.Post;
 import com.codeacademy.webapp.entities.Profile;
@@ -14,9 +15,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 
 @Controller
@@ -46,14 +49,18 @@ public class PostController {
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/create")
     public String createPost(Model model){
-        model.addAttribute("post", new Post());
+        model.addAttribute("postDTO", new PostDTO());
         return "create-post";
     }
 
     @PostMapping("/save")
     //                     @MODELATTRIBUTE NERA REIKALINGAS!!!!
-    public String savePost(@ModelAttribute("post") Post post){
-        postService.savePost(postService.createPost(post));
+    public String savePost(@Valid PostDTO postDTO, BindingResult bindingResult){
+        //TODO PADARYT KAD RODYTU NEVALIDZIAI UZPILDYTA FORMA
+        if(bindingResult.hasErrors()){
+            return "create-post";
+        }
+        postService.savePost(postService.createPost(postDTO));
         return "redirect:/post/list";
     }
 

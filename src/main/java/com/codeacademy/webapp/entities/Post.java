@@ -1,6 +1,7 @@
 package com.codeacademy.webapp.entities;
 
 
+import com.codeacademy.webapp.dto.PostDTO;
 import lombok.Data;
 import lombok.extern.apachecommons.CommonsLog;
 import org.hibernate.annotations.CreationTimestamp;
@@ -42,5 +43,11 @@ public class Post {
 
     public Post(){
 
+    }
+    public Post (PostDTO postDTO){
+        this.id = postDTO.getId();
+        this.title = postDTO.getTitle();
+        this.text = postDTO.getText();
+        this.createdAt = postDTO.getCreatedAt();
     }
 }

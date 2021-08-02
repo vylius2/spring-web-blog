@@ -21,3 +21,10 @@
     padding: 6px;
     color: white;
 }
+.content {
+    min-height: calc(100vh - 160px);
+}
+
+.stay-bottom {
+    height: 50px;
+}
