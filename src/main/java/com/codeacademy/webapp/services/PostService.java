@@ -3,10 +3,8 @@ package com.codeacademy.webapp.services;
 import com.codeacademy.webapp.dto.PostDTO;
 import com.codeacademy.webapp.entities.Post;
 import com.codeacademy.webapp.entities.Profile;
-import com.codeacademy.webapp.exceptions.ProfileNotFoundException;
 import com.codeacademy.webapp.repositories.PostRepository;
 import com.codeacademy.webapp.repositories.ProfileRepository;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,12 +18,13 @@ import java.util.List;
 @Service
 public class PostService {
 
-    @Autowired
-    PostRepository postRepository;
+    private final PostRepository postRepository;
+    private final ProfileRepository profileRepository;
 
-    @Autowired
-    ProfileRepository profileRepository;
-
+    public PostService(PostRepository postRepository, ProfileRepository profileRepository){
+        this.postRepository = postRepository;
+        this.profileRepository = profileRepository;
+    }
 
     public Page<Post> getAllPostsPaginated(Pageable pageable){
         return postRepository.findAll(pageable);

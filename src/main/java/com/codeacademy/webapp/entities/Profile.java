@@ -62,6 +62,9 @@ public class Profile implements UserDetails {
         this.createdAt = profileDTO.getCreatedAt();
     }
     public void addRole(Role role){
+        if (roles == null){
+            roles = new HashSet<>();
+        }
         roles.add(role);
     }
 

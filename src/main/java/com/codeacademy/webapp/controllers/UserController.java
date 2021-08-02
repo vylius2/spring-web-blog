@@ -3,8 +3,6 @@ package com.codeacademy.webapp.controllers;
 import com.codeacademy.webapp.dto.ProfileDTO;
 import com.codeacademy.webapp.entities.Profile;
 import com.codeacademy.webapp.services.ProfileService;
-import com.codeacademy.webapp.services.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +20,11 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
 
-    //TODO PERDARYT I CONSTRUCTOR BASED
-    @Autowired
-    private ProfileService profileService;
-    @Autowired
-    private RoleService roleService;
+    private final ProfileService profileService;
 
+    public UserController(ProfileService profileService){
+        this.profileService = profileService;
+    }
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));

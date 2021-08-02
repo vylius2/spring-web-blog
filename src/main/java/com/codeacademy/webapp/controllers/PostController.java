@@ -25,21 +25,17 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/post")
 public class PostController {
-    //TODO PERDARYT I CONSTRUCTOR BASED
-    @Autowired
     PostService postService;
-
-    @Autowired
     ProfileRepository profileRepository;
-
-    @Autowired
     ProfileService profileService;
-
-    @Autowired
     CommentService commentService;
 
-    public PostController(){
-        this.postService =
+    public PostController(PostService postService, ProfileRepository profileRepository,
+                          ProfileService profileService, CommentService commentService){
+        this.postService = postService;
+        this.profileService = profileService;
+        this.profileRepository = profileRepository;
+        this.commentService = commentService;
     }
     @GetMapping("/list")
     public String listPosts(@PageableDefault(size = 9) Pageable pageable,

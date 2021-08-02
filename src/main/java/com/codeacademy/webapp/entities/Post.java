@@ -3,7 +3,6 @@ package com.codeacademy.webapp.entities;
 
 import com.codeacademy.webapp.dto.PostDTO;
 import lombok.Data;
-import lombok.extern.apachecommons.CommonsLog;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;

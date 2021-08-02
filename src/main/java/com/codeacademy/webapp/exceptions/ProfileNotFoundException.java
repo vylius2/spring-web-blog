@@ -1,14 +1,14 @@
 package com.codeacademy.webapp.exceptions;
 
 public class ProfileNotFoundException extends RuntimeException{
-    private final Long profileId;
+    private final String username;
 
-    public ProfileNotFoundException(Long profileId){
-        this.profileId = profileId;
+    public ProfileNotFoundException(String username){
+        this.username = username;
     }
 
-    public Long getProfileId(){
-        return profileId;
+    public String getProfileUsername(){
+        return username;
     }
 
 }

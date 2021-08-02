@@ -9,7 +9,7 @@ import java.util.Optional;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
-    public Optional<Role> findById(Long id);
+    Optional<Role> findById(Long id);
 
-    public Role findByTitle(String title);
+    Role findByTitle(String title);
 }

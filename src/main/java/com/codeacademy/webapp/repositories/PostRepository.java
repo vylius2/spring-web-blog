@@ -2,8 +2,6 @@ package com.codeacademy.webapp.repositories;
 
 import com.codeacademy.webapp.entities.Post;
 import com.codeacademy.webapp.entities.Profile;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
