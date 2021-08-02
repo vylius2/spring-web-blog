@@ -1,5 +1,6 @@
 package com.codeacademy.webapp.entities;
 
+import com.codeacademy.webapp.dto.ProfileDTO;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
@@ -51,12 +52,16 @@ public class Profile implements UserDetails {
     public Profile(){
 
     }
+    public Profile(ProfileDTO profileDTO){
+        this.id = profileDTO.getId();
+        this.username = profileDTO.getUsername();
+        this.password = profileDTO.getPassword();
+        this.email = profileDTO.getEmail();
+        this.firstName = profileDTO.getFirstName();
+        this.lastName = profileDTO.getLastName();
+        this.createdAt = profileDTO.getCreatedAt();
+    }
     public void addRole(Role role){
-        //TODO PRATESTUOT BE SITO
-        if (roles==null){
-            roles = new HashSet<>();
-        }
-        //TODO -----------------------
         roles.add(role);
     }
 

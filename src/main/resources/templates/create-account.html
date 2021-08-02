@@ -52,7 +52,7 @@
 <body class="text-center">
 
     <main class="form-signin">
-        <form action="#" th:action="@{/user/save}" method="POST" th:object="${profile}" autocomplete="chrome-off">
+        <form action="#" th:action="@{/user/save}" method="POST" th:object="${profileDTO}" autocomplete="chrome-off">
             <input type="hidden" th:field="*{id}">
             <input type="hidden" th:field="*{createdAt}">
             <h1 class="h3 mb-3 fw-normal">Create account</h1>
@@ -61,27 +61,32 @@
                        onfocus="if (this.hasAttribute('readonly')) {
                         this.removeAttribute('readonly');}"/>
                 <label for="floatingInput">Username <span>*</span></label>
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback"></div>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" placeholder="Password" name="password"
+                       th:field="*{password}" autocomplete="chrome-off" th:errorClass="is-invalid">
+                <label for="floatingPassword">Password <span>*</span></label>
+                <div th:if="${#fields.hasErrors()}" th:errors="*{password}" class="invalid-feedback"></div>
             </div>
             <div class="form-floating">
                 <input type="text" class="form-control" placeholder="Email" name="email"
                        th:field="*{email}" th:errorClass="is-invalid">
                 <label for="floatingInput">Email <span>*</span></label>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
             </div>
 
             <div class="form-floating">
                 <input type="text" class="form-control" placeholder="First name" name="firstName"
                        th:field="*{firstName}" th:errorClass="is-invalid">
                 <label for="floatingInput">First name <span>*</span></label>
+                <div th:if="${#fields.hasErrors()}" th:errors="*{firstName}" class="invalid-feedback"></div>
             </div>
             <div class="form-floating">
                 <input type="text" class="form-control" placeholder="Last name" name="lastName"
                        th:field="*{lastName}" th:errorClass="is-invalid">
                 <label for="floatingInput">Last name</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" placeholder="Password" name="password"
-                       th:field="*{password}" autocomplete="chrome-off" th:errorClass="is-invalid">
-                <label for="floatingPassword">Password <span>*</span></label>
+                <div th:if="${#fields.hasErrors()}" th:errors="*{lastName}" class="invalid-feedback"></div>
             </div>
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">Create</button>

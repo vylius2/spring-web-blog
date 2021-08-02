@@ -1,6 +1,5 @@
 package com.codeacademy.webapp.configs;
 
-import com.codeacademy.webapp.entities.Profile;
 import com.codeacademy.webapp.services.ProfileService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/post/view", "/post/list").permitAll()
                 .antMatchers("/post/**").permitAll()
                 .antMatchers("/comment/**", "/static/**", "/static/css/**", "/**").permitAll()
-//                .anyRequest().permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()

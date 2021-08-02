@@ -38,6 +38,9 @@ public class PostController {
     @Autowired
     CommentService commentService;
 
+    public PostController(){
+        this.postService =
+    }
     @GetMapping("/list")
     public String listPosts(@PageableDefault(size = 9) Pageable pageable,
                             Model model,
@@ -56,7 +59,6 @@ public class PostController {
     @PostMapping("/save")
     //                     @MODELATTRIBUTE NERA REIKALINGAS!!!!
     public String savePost(@Valid PostDTO postDTO, BindingResult bindingResult){
-        //TODO PADARYT KAD RODYTU NEVALIDZIAI UZPILDYTA FORMA
         if(bindingResult.hasErrors()){
             return "create-post";
         }
