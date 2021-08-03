@@ -21,5 +21,5 @@ public class PostDTO {
     private LocalDateTime createdAt;
 
     public PostDTO(){}
-    
+
 }
