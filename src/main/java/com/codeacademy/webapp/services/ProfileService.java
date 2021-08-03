@@ -26,9 +26,6 @@ public class ProfileService implements UserDetailsService {
 
 
     public void save(Profile profile){
-        System.out.println("\n\n\n\n\n\n\n" + profile + "\n\n\n\n\n\n\n\n");
-//        profileRepository.findByUsername(profile.getUsername()).orElseThrow(() -> new UserAlreadyExistAuthenticationException(profile.getUsername()));
-
         profileRepository.save(profile);
     }
 

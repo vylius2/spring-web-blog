@@ -57,7 +57,6 @@ public class UserController {
         if (bindingResult.hasErrors()){
             return "create-account";
         }
-        System.out.println("\n\n\n\n\n\npirmas\n" + profileDTO + "\n\n\n\n\n");
         try {
             profileService.save(profileService.createProfile(new Profile(profileDTO)));
         } catch (UserAlreadyExistAuthenticationException e) {
