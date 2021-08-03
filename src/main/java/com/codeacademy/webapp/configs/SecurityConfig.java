@@ -30,12 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/user/register").permitAll()
-                .antMatchers("/user/save").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/user/login").permitAll()
                 .antMatchers("/user/**").permitAll()
-                .antMatchers("/post/view", "/post/list").permitAll()
                 .antMatchers("/post/**").permitAll()
                 .antMatchers("/comment/**", "/static/**", "/static/css/**", "/**").permitAll()
                 .anyRequest().authenticated()
@@ -44,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/user/login")
                 .loginProcessingUrl("/user/login")
                 .defaultSuccessUrl("/post/list")
-                .failureUrl("/login?error=true")
+                .failureUrl("/user/login?error=true")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and()

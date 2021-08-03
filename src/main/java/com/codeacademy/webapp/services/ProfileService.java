@@ -2,6 +2,7 @@ package com.codeacademy.webapp.services;
 
 import com.codeacademy.webapp.entities.Profile;
 import com.codeacademy.webapp.exceptions.ProfileNotFoundException;
+import com.codeacademy.webapp.exceptions.UserAlreadyExistAuthenticationException;
 import com.codeacademy.webapp.repositories.ProfileRepository;
 import com.codeacademy.webapp.repositories.RoleRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +26,9 @@ public class ProfileService implements UserDetailsService {
 
 
     public void save(Profile profile){
+        System.out.println("\n\n\n\n\n\n\n" + profile + "\n\n\n\n\n\n\n\n");
+//        profileRepository.findByUsername(profile.getUsername()).orElseThrow(() -> new UserAlreadyExistAuthenticationException(profile.getUsername()));
+
         profileRepository.save(profile);
     }
 
@@ -33,9 +37,9 @@ public class ProfileService implements UserDetailsService {
         return profileRepository.findByUsername(username).orElseThrow(() -> new ProfileNotFoundException(username));
     }
 
-    public Profile createProfile(Profile profile){
+    public Profile createProfile(Profile profile) throws UserAlreadyExistAuthenticationException {
         if (profileRepository.findByUsername(profile.getUsername()).isPresent()){
-            return null;
+            throw new UserAlreadyExistAuthenticationException(profile.getUsername());
         }
         profile.addRole(roleRepository.findByTitle("USER"));
 
