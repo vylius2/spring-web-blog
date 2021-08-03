@@ -1,5 +1,6 @@
 package com.codeacademy.webapp.dto;
 
+import com.codeacademy.webapp.entities.Post;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -18,4 +19,7 @@ public class PostDTO {
     private String text;
 
     private LocalDateTime createdAt;
+
+    public PostDTO(){}
+    
 }

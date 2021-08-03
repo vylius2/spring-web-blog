@@ -53,11 +53,6 @@
             <input type="hidden" th:field="*{id}">
             <input th:type="hidden" th:field="*{createdAt}">
             <h1 class="h3 mb-3 fw-normal">Post create form!</h1>
-<!--            <div th:if="${#fields.hasErrors()}" class="alert alert-danger" role="alert">-->
-<!--                <ul>-->
-<!--                    <li th:each="err: ${#fields.errors()}" th:text="${err}"></li>-->
-<!--                </ul>-->
-<!--            </div>-->
             <div class="form-group">
                 <label>What your post will be about?</label>
                 <input type="text" class="form-control" placeholder="Title" th:field="*{title}" th:errorClass="is-invalid">

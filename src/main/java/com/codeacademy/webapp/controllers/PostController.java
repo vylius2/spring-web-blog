@@ -71,7 +71,7 @@ public class PostController {
 
     @GetMapping("/edit")
     public String updatePost(@RequestParam("postId") Long id, Model model){
-        model.addAttribute("post", postService.findPostById(id));
+        model.addAttribute("postDTO", postService.findPostById(id));
         return "create-post";
     }
     @GetMapping("/view")
